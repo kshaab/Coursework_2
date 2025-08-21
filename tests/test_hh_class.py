@@ -1,5 +1,7 @@
 from unittest.mock import patch, Mock
 
+import pytest
+import requests
 
 from src.hh_class import HeadHunterAPI
 
@@ -30,8 +32,13 @@ def test_connect_api_failure(mock_get: Mock) -> None:
     fake_response.status_code = 404
     fake_response.reason = "Указанная вакансия не существует"
     mock_get.return_value = fake_response
-
     hh = HeadHunterAPI()
     vacancies = hh.get_vacancies("Python")
+    assert vacancies == []
 
+@patch("requests.get")
+def test_connect_api_error(mock_get) -> None:
+    mock_get.side_effect = requests.RequestException("Ошибка сетевого подключения")
+    hh = HeadHunterAPI()
+    vacancies = hh.get_vacancies("Python")
     assert vacancies == []
