@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod
+from typing import Dict, Any, List
 
 class BaseClassAPI(ABC):
     """Абстрактный класс для работы с API"""
 
     @abstractmethod
-    def __connect_api(self):
+    def _connect_api(self, params: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Метод подключения к API"""
         pass
 
     @abstractmethod
-    def get_vacancies(self, key_word):
+    def get_vacancies(self, key_word: str) -> list:
         """Метод получения вакансий"""
         pass
 
