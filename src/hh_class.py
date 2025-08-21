@@ -7,6 +7,7 @@ class HeadHunterAPI(BaseClassAPI):
 
     def __init__(self) -> None:
         """Инициализация приватного атрибута класса"""
+        self._HeadHunterAPI__base_url = None
         self.__base_url = "https://api.hh.ru/vacancies"
 
     def _connect_api(self, params: Dict[str, Any]) -> List[Dict[str, Any]]:
