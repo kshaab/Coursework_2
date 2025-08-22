@@ -41,10 +41,6 @@ class Vacancies():
         """Метод для операции сравнения больше"""
         return self.salary > other.salary
 
-    def __eq__(self, other: "Vacancies") -> bool:
-        """Метод для операции сравнения равно"""
-        return self.salary == other.salary
-
     def __ge__(self, other: "Vacancies") -> bool:
         """Метод для операции сравнения больше или равно"""
         return self.salary >= other.salary
@@ -63,7 +59,7 @@ if __name__ == "__main__":
     print(vacancy_1 < vacancy_2)
     print(vacancy_1 >= vacancy_2)
     print(vacancy_1 <= vacancy_2)
-    print(vacancy_1 == vacancy_2)
+
 
 
 

@@ -37,7 +37,7 @@ def test_connect_api_failure(mock_get: Mock) -> None:
     assert vacancies == []
 
 @patch("requests.get")
-def test_connect_api_error(mock_get) -> None:
+def test_connect_api_error(mock_get: Mock) -> None:
     mock_get.side_effect = requests.RequestException("Ошибка сетевого подключения")
     hh = HeadHunterAPI()
     vacancies = hh.get_vacancies("Python")
