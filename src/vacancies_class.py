@@ -23,7 +23,7 @@ class Vacancies():
 
     @salary.setter
     def salary(self, value: int) -> None:
-        """Валидаци з/п"""
+        """Валидация з/п"""
         if value < 0:
             raise ValueError("Зарплата не может быть отрицательной")
         else:

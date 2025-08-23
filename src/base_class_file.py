@@ -5,11 +5,11 @@ class BaseClassFile(ABC):
     """Абстрактный класс для работы с файлами"""
 
     @abstractmethod
-    def add_vacancies_in_file(self) -> None:
+    def add_vacancies_in_file(self, vacancy: Dict[str, Any]) -> None:
         """Метод для добавления вакансий в файл"""
         pass
     @abstractmethod
-    def get_vacancies_from_file(self, params: Dict[str, Any]) -> list[dict]:
+    def get_vacancies_from_file(self, params: Dict[str, Any]) -> list[Dict[str, Any]]:
         """Метод получения данных из файла"""
         pass
     @abstractmethod
