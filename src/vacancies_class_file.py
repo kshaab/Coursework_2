@@ -16,6 +16,10 @@ class VacanciesFile(BaseClassFile):
             with open(self.__filename, "w", encoding="utf-8") as f:
                 json.dump([], f, ensure_ascii=False, indent=4)
 
+    @property
+    def filename(self) -> str:
+        """Геттер для имени файла"""
+        return self.__filename
 
     def add_vacancies_in_file(self, vacancies: Union[Dict[str, Any], list[Dict[str, Any]]]) -> None:
         """Метод для добавления вакансий в файл"""
