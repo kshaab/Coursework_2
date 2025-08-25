@@ -39,15 +39,26 @@ class VacanciesFile(BaseClassFile):
         with open(self.__filename, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
-    def get_vacancies_from_file(self, params: Dict[str, Any] | None = None) -> List[Dict[str, Any]]:
-        """Метод получения данных из файла по фильтрам"""
+    def get_vacancies_from_file(self, keywords: list[str]) -> list[dict]:
+        """Метод получения вакансий по ключевым словам"""
         with open(self.__filename, "r", encoding="utf-8") as f:
-            data: List[Dict[str, Any]] = json.load(f)
+            data: list[dict] = json.load(f)
 
-        if not params:
+        if not keywords:
             return data
 
-        return [vac for vac in data if all(str(value).lower() in str(vac.get(key, "")).lower() for key, value in params.items())]
+        result = []
+        for vac in data:
+            text = " ".join([
+                str(vac.get("name", "")),
+                str(vac.get("requirements", "")),
+                str(vac.get("responsibility", "")),
+                str(vac.get("experience", ""))
+            ]).lower()
+
+            if any(kw.lower() in text for kw in keywords):
+                result.append(vac)
+        return result
 
     def del_vacancies_from_file(self) -> None:
         """Метод для удаления всех вакансий"""
@@ -56,9 +67,3 @@ class VacanciesFile(BaseClassFile):
 
 
 
-if __name__ == "__main__":
-    hh = HeadHunterAPI()
-    vacancies_data = hh.get_vacancies("Python")
-    storage = VacanciesFile("vacancies.json")
-    storage.add_vacancies_in_file(vacancies_data)
-    print(storage.get_vacancies_from_file({}))

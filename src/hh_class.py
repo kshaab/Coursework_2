@@ -35,12 +35,7 @@ class HeadHunterAPI(BaseClassAPI):
         return self._connect_api(params)
 
 
-if __name__ == "__main__":
-    hh = HeadHunterAPI()
-    vacancies = hh.get_vacancies("Python")
 
-    for v in vacancies[:5]:
-        print(v)
 
 
 

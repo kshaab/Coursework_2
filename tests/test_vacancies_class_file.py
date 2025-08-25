@@ -31,14 +31,14 @@ def test_get_vacancies_from_file(storage: VacanciesFile) -> None:
     vacancies = [{"name": "Python Developer", "url": "http://test.com/1"},
                  {"name": "Python Developer Senior", "url": "http://test.com/2"}]
     storage.add_vacancies_in_file(vacancies)
-    result = storage.get_vacancies_from_file()
+    result = storage.get_vacancies_from_file([])
     assert len(result) == 2
 
 def test_get_vacancies_from_file_filter(storage: VacanciesFile) -> None:
     vacancies = [{"name": "Python Developer", "url": "http://test.com/1"},
                  {"name": "Java Developer", "url": "http://test.com/2"}]
     storage.add_vacancies_in_file(vacancies)
-    result = storage.get_vacancies_from_file({"name": "Java"})
+    result = storage.get_vacancies_from_file(["Java"])
     assert len(result) == 1
     assert result[0]["name"] == "Java Developer"
 
