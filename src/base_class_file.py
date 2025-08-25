@@ -9,7 +9,7 @@ class BaseClassFile(ABC):
         """Метод для добавления вакансий в файл"""
         ...
     @abstractmethod
-    def get_vacancies_from_file(self, params: Dict[str, Any]) -> list[Dict[str, Any]]:
+    def get_vacancies_from_file(self, keywords: list[str]) -> list[dict]:
         """Метод получения данных из файла"""
         ...
     @abstractmethod

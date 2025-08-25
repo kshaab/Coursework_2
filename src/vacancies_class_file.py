@@ -10,7 +10,7 @@ class VacanciesFile(BaseClassFile):
 
     def __init__(self, filename: str = "vacancies.json"):
         """Инициализация атрибута с именем файла"""
-        self.__filename = os.path.join("../data", filename)
+        self.__filename = os.path.join("data", filename)
 
         if not os.path.exists(self.__filename):
             with open(self.__filename, "w", encoding="utf-8") as f:
