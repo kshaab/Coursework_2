@@ -3,7 +3,7 @@ import json
 from typing import Dict, Any, List, Union
 
 from src.base_class_file import BaseClassFile
-from src.hh_class import HeadHunterAPI
+
 
 class VacanciesFile(BaseClassFile):
     """Класс для работы с JSON-файлами"""

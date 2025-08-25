@@ -2,7 +2,7 @@ from src.hh_class import HeadHunterAPI
 from src.vacancies_class_file import VacanciesFile
 from src.vacancies_class import Vacancies
 
-def user_interaction():
+def user_interaction() -> None:
     """Функция для взаимодействия с пользователем"""
     hh_api = HeadHunterAPI()
     storage = VacanciesFile("vacancies.json")

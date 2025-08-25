@@ -7,10 +7,10 @@ class BaseClassAPI(ABC):
     @abstractmethod
     def _connect_api(self, params: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Метод подключения к API"""
-        pass
+        ...
 
     @abstractmethod
     def get_vacancies(self, key_word: str) -> list:
         """Метод получения вакансий"""
-        pass
+        ...
 

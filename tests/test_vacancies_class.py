@@ -49,6 +49,30 @@ def test_vacancies_property_setter(vacancy: Vacancies) -> None:
                      -200000)
     assert vacancy.salary == 200000
 
+def test_cast_to_object() -> None:
+    data = {
+        "name": "Python Developer",
+        "url": "https://hh.ru/vacancy",
+         "work_schedule_by_days": [{"id": "FIVE_ON_TWO_OFF", "name": "5/2"}],
+        "experience": {"name": "1-3 года"},
+        "snippet": {
+            "requirement": "умение писать на Python",
+            "responsibility": "Проектирование"
+        },
+        "salary": 200000
+    }
+
+    vac = Vacancies.cast_to_object(data)
+
+    assert isinstance(vac, Vacancies)
+    assert vac.name == "Python Developer"
+    assert vac.salary == 200000
+    assert vac.experience == "1-3 года"
+    assert vac.requirements == "умение писать на Python"
+    assert vac.responsibility == "Проектирование"
+    assert vac.schedule == "5/2"
+
+
 def test_vacancies_lt(vacancy: Vacancies, other_vacancy: Vacancies) -> None:
     assert (vacancy.salary < other_vacancy.salary) == False
 
