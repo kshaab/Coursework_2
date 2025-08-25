@@ -1,8 +1,11 @@
 class Vacancies:
     """Класс для работы с вакансиями"""
+
     __slots__ = ("name", "url", "schedule", "experience", "requirements", "responsibility", "__salary")
 
-    def __init__(self, name: str, url: str, schedule: str, experience: str, requirements: str, responsibility: str, salary: int) -> None:
+    def __init__(
+        self, name: str, url: str, schedule: str, experience: str, requirements: str, responsibility: str, salary: int
+    ) -> None:
         """Инициализация атрибутов"""
         if not isinstance(name, str) or not name.strip():
             raise ValueError("Вакансии не найдены")
@@ -20,8 +23,10 @@ class Vacancies:
 
     def __str__(self) -> str:
         """Метод для вывода вакансий в строку"""
-        return (f"{self.name}({self.url}), {self.salary}, {self.schedule}, {self.experience}: "
-                f"\n{self.requirements if self.requirements else " "}. {self.responsibility if self.responsibility else " "}").strip()
+        return (
+            f"{self.name}({self.url}), {self.salary}, {self.schedule}, {self.experience}: "
+            f"\n{self.requirements if self.requirements else " "}. {self.responsibility if self.responsibility else " "}"
+        ).strip()
 
     @property
     def salary(self) -> int:
@@ -58,7 +63,7 @@ class Vacancies:
             schedule=schedule,
             experience=get_experience.get("name", ""),
             requirements=snippet.get("requirement", "Нет требований"),
-            responsibility=snippet.get("responsibility", "")
+            responsibility=snippet.get("responsibility", ""),
         )
 
     def __lt__(self, other: "Vacancies") -> bool:
@@ -76,9 +81,3 @@ class Vacancies:
     def __ge__(self, other: "Vacancies") -> bool:
         """Метод для операции сравнения больше или равно"""
         return self.salary >= other.salary
-
-
-
-
-
-

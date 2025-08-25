@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Any, List
+from typing import Any, Dict, List
+
 
 class BaseClassAPI(ABC):
     """Абстрактный класс для работы с API"""
@@ -13,4 +14,3 @@ class BaseClassAPI(ABC):
     def get_vacancies(self, key_word: str) -> list:
         """Метод получения вакансий"""
         ...
-

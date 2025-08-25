@@ -1,5 +1,6 @@
-from src.vacancies_class import Vacancies
 import pytest
+
+from src.vacancies_class import Vacancies
 
 
 def test_vacancies_class(vacancy: Vacancies) -> None:
@@ -11,29 +12,44 @@ def test_vacancies_class(vacancy: Vacancies) -> None:
     assert vacancy.responsibility == "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API."
     assert vacancy.salary == 200000
 
+
 def test_vacancies_class_name_error() -> None:
     with pytest.raises(ValueError):
-        Vacancies(" ", "https://hh.ru/vacancy",
-                     "5/2", "от 3-х лет",
-                     "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
-                     "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
-                     200000)
+        Vacancies(
+            " ",
+            "https://hh.ru/vacancy",
+            "5/2",
+            "от 3-х лет",
+            "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
+            "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
+            200000,
+        )
+
 
 def test_vacancies_class_url_error() -> None:
     with pytest.raises(ValueError):
-        Vacancies("Python Developer Senior", "htt://hh.ru/vacancy",
-                     "5/2", "от 3-х лет",
-                     "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
-                     "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
-                     200000)
+        Vacancies(
+            "Python Developer Senior",
+            "htt://hh.ru/vacancy",
+            "5/2",
+            "от 3-х лет",
+            "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
+            "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
+            200000,
+        )
+
 
 def test_vacancies_class_salary_error() -> None:
     with pytest.raises(ValueError):
-        Vacancies("Python Developer Senior", "https://hh.ru/vacancy",
-                     "5/2", "от 3-х лет",
-                     "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
-                     "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
-                     -200000)
+        Vacancies(
+            "Python Developer Senior",
+            "https://hh.ru/vacancy",
+            "5/2",
+            "от 3-х лет",
+            "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
+            "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
+            -200000,
+        )
 
 
 def test_vacancies_property(vacancy: Vacancies) -> None:
@@ -42,24 +58,26 @@ def test_vacancies_property(vacancy: Vacancies) -> None:
 
 def test_vacancies_property_setter(vacancy: Vacancies) -> None:
     with pytest.raises(ValueError):
-        Vacancies("Python Developer Senior", "https://hh.ru/vacancy",
-                     "5/2", "от 3-х лет",
-                     "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
-                     "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
-                     -200000)
+        Vacancies(
+            "Python Developer Senior",
+            "https://hh.ru/vacancy",
+            "5/2",
+            "от 3-х лет",
+            "Опыт работы с реляционными и нереляционными базами данных: PostgreSQL, Redis.",
+            "Проектирование, разработка и поддержка backend-сервисов, телеграм ботов и API.",
+            -200000,
+        )
     assert vacancy.salary == 200000
+
 
 def test_cast_to_object() -> None:
     data = {
         "name": "Python Developer",
         "url": "https://hh.ru/vacancy",
-         "work_schedule_by_days": [{"id": "FIVE_ON_TWO_OFF", "name": "5/2"}],
+        "work_schedule_by_days": [{"id": "FIVE_ON_TWO_OFF", "name": "5/2"}],
         "experience": {"name": "1-3 года"},
-        "snippet": {
-            "requirement": "умение писать на Python",
-            "responsibility": "Проектирование"
-        },
-        "salary": 200000
+        "snippet": {"requirement": "умение писать на Python", "responsibility": "Проектирование"},
+        "salary": 200000,
     }
 
     vac = Vacancies.cast_to_object(data)
@@ -74,13 +92,16 @@ def test_cast_to_object() -> None:
 
 
 def test_vacancies_lt(vacancy: Vacancies, other_vacancy: Vacancies) -> None:
-    assert (vacancy.salary < other_vacancy.salary) == False
+    assert not (vacancy.salary < other_vacancy.salary)
+
 
 def test_vacancies_le(vacancy: Vacancies, other_vacancy: Vacancies) -> None:
-    assert (vacancy.salary <= other_vacancy.salary) == False
+    assert not (vacancy.salary <= other_vacancy.salary)
+
 
 def test_vacancies_gt(vacancy: Vacancies, other_vacancy: Vacancies) -> None:
-    assert (vacancy.salary > other_vacancy.salary) == True
+    assert vacancy.salary > other_vacancy.salary
+
 
 def test_vacancies_ge(vacancy: Vacancies, other_vacancy: Vacancies) -> None:
-    assert (vacancy.salary >= other_vacancy.salary) == True
+    assert vacancy.salary >= other_vacancy.salary

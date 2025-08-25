@@ -1,6 +1,9 @@
+from typing import Any, Dict, List, cast
+
 import requests
+
 from src.base_class_api import BaseClassAPI
-from typing import List, Dict, Any, cast
+
 
 class HeadHunterAPI(BaseClassAPI):
     """Класс для работы с API hh.ru"""
@@ -27,18 +30,5 @@ class HeadHunterAPI(BaseClassAPI):
 
     def get_vacancies(self, key_word: str) -> List[Dict[str, Any]]:
         """Метод получения вакансий по ключевому слову"""
-        params = {
-            "text": key_word,
-            "per_page": 50,
-            "page": 0
-        }
+        params = {"text": key_word, "per_page": 50, "page": 0}
         return self._connect_api(params)
-
-
-
-
-
-
-
-
-
